@@ -4,7 +4,7 @@ const { gerarPlanilha } = require('../../lib/exportXlsx');
 
 // Serverless Function da Vercel: exporta todos os cadastros (com e-mail e telefone) em .xlsx.
 module.exports = async function handler(req, res) {
-  const acesso = checarAcesso(req.headers['x-admin-key']);
+  const acesso = checarAcesso(req.headers['x-admin-token']);
   if (!acesso.ok) {
     res.status(acesso.status).json({ erro: acesso.erro });
     return;

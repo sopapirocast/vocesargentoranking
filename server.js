@@ -4,7 +4,7 @@ require('dotenv').config({ path: '.env.local' });
 const path = require('path');
 const express = require('express');
 const { listarRanking, cadastrarNota, listarRankingCompleto, listarParaExportacao, removerNota } = require('./lib/ranking');
-const { checarAcesso } = require('./lib/adminAuth');
+const { login, checarAcesso } = require('./lib/adminAuth');
 const { gerarPlanilha } = require('./lib/exportXlsx');
 
 const app = express();
@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-function exigirAdmin(req, res, next) {
-  const acesso = checarAcesso(req.headers['x-admin-key']);
+function exigirPainel(req, res, next) {
+  const acesso = checarAcesso(req.headers['x-admin-token']);
   if (!acesso.ok) {
     res.status(acesso.status).json({ erro: acesso.erro });
     return;
@@ -41,7 +41,17 @@ app.post('/api/rankings', async (req, res) => {
   }
 });
 
-app.get('/api/admin/rankings', exigirAdmin, async (req, res) => {
+app.post('/api/painel/login', (req, res) => {
+  const { senha } = req.body || {};
+  const resultado = login(senha);
+  if (!resultado.ok) {
+    res.status(resultado.status).json({ erro: resultado.erro });
+    return;
+  }
+  res.status(200).json({ token: resultado.token, expiresAt: resultado.expiresAt });
+});
+
+app.get('/api/painel/rankings', exigirPainel, async (req, res) => {
   try {
     const ranking = await listarRankingCompleto();
     res.json(ranking);
@@ -50,7 +60,7 @@ app.get('/api/admin/rankings', exigirAdmin, async (req, res) => {
   }
 });
 
-app.get('/api/admin/export', exigirAdmin, async (req, res) => {
+app.get('/api/painel/export', exigirPainel, async (req, res) => {
   try {
     const entradas = await listarParaExportacao();
     const buffer = await gerarPlanilha(entradas);
@@ -62,7 +72,7 @@ app.get('/api/admin/export', exigirAdmin, async (req, res) => {
   }
 });
 
-app.delete('/api/admin/rankings/:id', exigirAdmin, async (req, res) => {
+app.delete('/api/painel/rankings/:id', exigirPainel, async (req, res) => {
   try {
     await removerNota(req.params.id);
     res.status(204).end();

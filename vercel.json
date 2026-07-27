@@ -5,7 +5,7 @@
     {
       "source": "/",
       "has": [{ "type": "host", "value": "crademin2.SEUDOMINIO.com" }],
-      "destination": "/admin/index.html"
+      "destination": "/painel/index.html"
     }
   ]
 }

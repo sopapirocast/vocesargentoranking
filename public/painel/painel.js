@@ -11,7 +11,7 @@
   const painelEmpty = document.getElementById('painel-empty');
   const buscaNome = document.getElementById('busca-nome');
 
-  const STORAGE_KEY = 'rankingEsaAdminKey';
+  const STORAGE_KEY = 'rankingEsaPainelToken';
   let dadosCompletos = [];
 
   function escapeHtml(str) {
@@ -30,15 +30,15 @@
     }
   }
 
-  function getAdminKey() {
+  function getToken() {
     return sessionStorage.getItem(STORAGE_KEY) || '';
   }
 
-  function setAdminKey(key) {
-    sessionStorage.setItem(STORAGE_KEY, key);
+  function setToken(token) {
+    sessionStorage.setItem(STORAGE_KEY, token);
   }
 
-  function clearAdminKey() {
+  function clearToken() {
     sessionStorage.removeItem(STORAGE_KEY);
   }
 
@@ -103,13 +103,13 @@
 
   async function carregarPainel() {
     try {
-      const resp = await fetch('/api/admin/rankings', {
-        headers: { 'x-admin-key': getAdminKey() },
+      const resp = await fetch('/api/painel/rankings', {
+        headers: { 'x-admin-token': getToken() },
       });
 
       if (resp.status === 401) {
-        clearAdminKey();
-        mostrarLogin('Senha de administrador inválida.');
+        clearToken();
+        mostrarLogin('Sessão expirada ou inválida. Entre novamente.');
         return;
       }
 
@@ -129,29 +129,37 @@
     ev.preventDefault();
     loginFeedback.hidden = true;
     const senha = document.getElementById('senha').value;
-    setAdminKey(senha);
 
-    const resp = await fetch('/api/admin/rankings', {
-      headers: { 'x-admin-key': senha },
-    });
+    try {
+      const resp = await fetch('/api/painel/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ senha }),
+      });
 
-    if (resp.status === 401 || resp.status === 500) {
       const data = await resp.json().catch(() => ({}));
-      clearAdminKey();
-      loginFeedback.textContent = data.erro || 'Falha ao entrar.';
+
+      if (!resp.ok) {
+        loginFeedback.textContent = data.erro || 'Falha ao entrar.';
+        loginFeedback.className = 'form-feedback err';
+        loginFeedback.hidden = false;
+        return;
+      }
+
+      setToken(data.token);
+      formLogin.reset();
+      mostrarPainel();
+    } catch (err) {
+      loginFeedback.textContent = 'Falha de conexão ao tentar entrar.';
       loginFeedback.className = 'form-feedback err';
       loginFeedback.hidden = false;
-      return;
     }
-
-    formLogin.reset();
-    mostrarPainel();
   });
 
   btnRefresh.addEventListener('click', carregarPainel);
 
   btnLogout.addEventListener('click', () => {
-    clearAdminKey();
+    clearToken();
     mostrarLogin();
   });
 
@@ -163,12 +171,12 @@
     btnExport.textContent = 'GERANDO...';
 
     try {
-      const resp = await fetch('/api/admin/export', {
-        headers: { 'x-admin-key': getAdminKey() },
+      const resp = await fetch('/api/painel/export', {
+        headers: { 'x-admin-token': getToken() },
       });
 
       if (resp.status === 401) {
-        clearAdminKey();
+        clearToken();
         mostrarLogin('Sessão expirada. Entre novamente.');
         return;
       }
@@ -203,13 +211,13 @@
 
     btn.disabled = true;
     try {
-      const resp = await fetch(`/api/admin/rankings/${encodeURIComponent(id)}`, {
+      const resp = await fetch(`/api/painel/rankings/${encodeURIComponent(id)}`, {
         method: 'DELETE',
-        headers: { 'x-admin-key': getAdminKey() },
+        headers: { 'x-admin-token': getToken() },
       });
 
       if (resp.status === 401) {
-        clearAdminKey();
+        clearToken();
         mostrarLogin('Sessão expirada. Entre novamente.');
         return;
       }
@@ -225,7 +233,7 @@
     }
   });
 
-  if (getAdminKey()) {
+  if (getToken()) {
     mostrarPainel();
   }
 })();

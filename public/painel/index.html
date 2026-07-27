@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Admin &middot; Ranking Nota Esa</title>
+<title>Painel &middot; Ranking Nota Esa</title>
 <link rel="icon" href="../assets/logo.avif" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../styles.css" />
-<link rel="stylesheet" href="admin.css" />
+<link rel="stylesheet" href="painel.css" />
 </head>
 <body>
 
@@ -34,7 +34,7 @@
     <div class="panel-title">
       <h2>IDENTIFICAÇÃO</h2>
     </div>
-    <form id="form-login" class="form-card" autocomplete="off">
+    <form id="form-login" class="form-card" autocomplete="off" method="post" action="#">
       <div class="field">
         <label for="senha">SENHA DE ADMINISTRADOR</label>
         <input type="password" id="senha" name="senha" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required />
@@ -91,6 +91,6 @@
   <span>RANKING NOTA ESA &middot; PAINEL ADMINISTRATIVO</span>
 </footer>
 
-<script src="admin.js"></script>
+<script src="painel.js"></script>
 </body>
 </html>
