@@ -80,6 +80,7 @@
             <td>${escapeHtml(item.nome)}</td>
             <td class="col-num">${escapeHtml(item.idade)}</td>
             <td>${escapeHtml(item.email)}</td>
+            <td class="col-num">${item.cotista ? 'Sim' : 'Não'}</td>
             <td class="col-num">${item.acertos}/${item.total}</td>
             <td class="col-num">${pct}%</td>
             <td>${escapeHtml(formatarData(item.data))}</td>

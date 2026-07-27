@@ -3,7 +3,7 @@ require('dotenv').config({ path: '.env.local' });
 
 const path = require('path');
 const express = require('express');
-const { listarRanking, cadastrarNota, listarRankingCompleto, removerNota } = require('./lib/ranking');
+const { listarRanking, cadastrarNota, listarRankingCompleto, listarParaExportacao, removerNota } = require('./lib/ranking');
 const { checarAcesso } = require('./lib/adminAuth');
 const { gerarPlanilha } = require('./lib/exportXlsx');
 
@@ -24,8 +24,8 @@ function exigirAdmin(req, res, next) {
 
 app.get('/api/rankings', async (req, res) => {
   try {
-    const { page, limit, q } = req.query;
-    const ranking = await listarRanking({ page, limit, q });
+    const { page, limit, q, tipo } = req.query;
+    const ranking = await listarRanking({ page, limit, q, tipo });
     res.json(ranking);
   } catch (err) {
     res.status(500).json({ erro: err.message || 'Erro interno.' });
@@ -52,7 +52,7 @@ app.get('/api/admin/rankings', exigirAdmin, async (req, res) => {
 
 app.get('/api/admin/export', exigirAdmin, async (req, res) => {
   try {
-    const entradas = await listarRankingCompleto();
+    const entradas = await listarParaExportacao();
     const buffer = await gerarPlanilha(entradas);
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     res.setHeader('Content-Disposition', 'attachment; filename="ranking-nota-esa.xlsx"');

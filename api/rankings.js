@@ -4,8 +4,8 @@ const { listarRanking, cadastrarNota } = require('../lib/ranking');
 module.exports = async function handler(req, res) {
   try {
     if (req.method === 'GET') {
-      const { page, limit, q } = req.query || {};
-      const ranking = await listarRanking({ page, limit, q });
+      const { page, limit, q, tipo } = req.query || {};
+      const ranking = await listarRanking({ page, limit, q, tipo });
       res.status(200).json(ranking);
       return;
     }

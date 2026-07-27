@@ -43,6 +43,11 @@
       <button id="btn-refresh" class="btn-ghost" type="button" title="Atualizar">&#8635; ATUALIZAR</button>
     </div>
 
+    <div class="segmented" id="filtro-classificacao">
+      <button type="button" class="segment-btn active" data-tipo="ampla">CLASSIFICAÇÃO AMPLA</button>
+      <button type="button" class="segment-btn" data-tipo="cotista">CLASSIFICAÇÃO COTISTA</button>
+    </div>
+
     <div class="search-bar">
       <span class="search-icon">&#128269;</span>
       <input type="text" id="busca-nome" placeholder="Pesquisar por nome..." />
@@ -96,10 +101,22 @@
         </div>
       </div>
 
-      <div class="field">
-        <label for="email">E-MAIL</label>
-        <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required />
+      <div class="field-row">
+        <div class="field">
+          <label for="email">E-MAIL</label>
+          <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required />
+        </div>
+
+        <div class="field">
+          <label for="telefone">TELEFONE</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(11) 91234-5678" required />
+        </div>
       </div>
+
+      <label class="checkbox-field">
+        <input type="checkbox" id="cotista" name="cotista" />
+        <span>Sou candidato(a) cotista</span>
+      </label>
 
       <button type="submit" class="btn-enlist">
         <span class="tab-icon">&#9873;</span> ENVIAR NOTA

@@ -9,11 +9,13 @@
   const rankingEmpty = document.getElementById('ranking-empty');
   const paginacao = document.getElementById('paginacao');
   const buscaNome = document.getElementById('busca-nome');
+  const filtroClassificacao = document.getElementById('filtro-classificacao');
   const form = document.getElementById('form-cadastro');
   const feedback = document.getElementById('form-feedback');
 
   let paginaAtual = 1;
   let termoBusca = '';
+  let tipoClassificacao = 'ampla';
   let debounceTimer = null;
 
   function showView(name) {
@@ -28,6 +30,17 @@
   tabRanking.addEventListener('click', () => showView('ranking'));
   tabEnviar.addEventListener('click', () => showView('enviar'));
   btnRefresh.addEventListener('click', () => carregarRanking());
+
+  filtroClassificacao.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('.segment-btn');
+    if (!btn || btn.classList.contains('active')) return;
+
+    filtroClassificacao.querySelectorAll('.segment-btn').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    tipoClassificacao = btn.dataset.tipo;
+    paginaAtual = 1;
+    carregarRanking();
+  });
 
   buscaNome.addEventListener('input', () => {
     clearTimeout(debounceTimer);
@@ -88,7 +101,7 @@
 
   async function carregarRanking() {
     try {
-      const params = new URLSearchParams({ page: String(paginaAtual), limit: '30' });
+      const params = new URLSearchParams({ page: String(paginaAtual), limit: '30', tipo: tipoClassificacao });
       if (termoBusca) params.set('q', termoBusca);
 
       const resp = await fetch(`/api/rankings?${params.toString()}`);
@@ -152,7 +165,9 @@
     const nome = document.getElementById('nome').value.trim();
     const idade = Number(document.getElementById('idade').value);
     const email = document.getElementById('email').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
     const acertos = Number(document.getElementById('acertos').value);
+    const cotista = document.getElementById('cotista').checked;
 
     const submitBtn = form.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
@@ -161,7 +176,7 @@
       const resp = await fetch('/api/rankings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, idade, email, acertos }),
+        body: JSON.stringify({ nome, idade, email, telefone, acertos, cotista }),
       });
 
       const data = await resp.json();

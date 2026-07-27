@@ -56,7 +56,7 @@ header, main, .footer {
   background: linear-gradient(180deg, var(--olive-700) 0%, var(--olive-800) 100%);
   border-bottom: 4px solid var(--olive-950);
   box-shadow: 0 6px 18px var(--shadow);
-  padding: 1.5rem 1rem 0.75rem;
+  padding: 1rem 1rem 0.6rem;
 }
 
 .topbar-inner {
@@ -69,41 +69,37 @@ header, main, .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .brand-logo {
-  height: 3rem;
+  height: 2.4rem;
   width: auto;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
   flex-shrink: 0;
 }
 
-@media (max-width: 560px) {
-  .brand-logo { height: 2.1rem; }
-}
-
 .stripe {
   height: 3px;
   flex: 1 1 60px;
-  max-width: 120px;
+  max-width: 100px;
   background: repeating-linear-gradient(90deg, var(--khaki) 0 10px, transparent 10px 16px);
   opacity: 0.8;
 }
 
 .brand {
   font-family: 'Black Ops One', 'Oswald', sans-serif;
-  font-size: clamp(1.5rem, 5vw, 2.6rem);
-  letter-spacing: 0.08em;
+  font-size: clamp(1.25rem, 5vw, 2.4rem);
+  letter-spacing: 0.06em;
   margin: 0;
   color: var(--khaki-light);
   text-shadow: 2px 2px 0 rgba(0,0,0,0.5), 0 0 18px rgba(0,0,0,0.3);
 }
 
 .brand-sub {
-  margin: 0.4rem 0 1.1rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
+  margin: 0.3rem 0 0.85rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
   color: var(--khaki);
   text-transform: uppercase;
 }
@@ -111,16 +107,16 @@ header, main, .footer {
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .tab-btn {
   font-family: 'Oswald', sans-serif;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
-  padding: 0.7rem 1.4rem;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  padding: 0.55rem 1.1rem;
   background: var(--olive-900);
   color: var(--khaki);
   border: 2px solid var(--olive-600);
@@ -142,14 +138,14 @@ header, main, .footer {
   box-shadow: 0 2px 8px var(--shadow);
 }
 
-.tab-icon { margin-right: 0.35rem; }
+.tab-icon { margin-right: 0.3rem; }
 
 /* ---------- Main ---------- */
 
 main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 1.75rem 1rem 3rem;
+  padding: 1.25rem 1rem 2.25rem;
 }
 
 .view { display: none; animation: fadeIn 0.2s ease; }
@@ -165,14 +161,16 @@ main {
   align-items: center;
   justify-content: space-between;
   border-bottom: 3px solid var(--olive-600);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.25rem;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.9rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .panel-title h2 {
   font-family: 'Black Ops One', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
   margin: 0;
   color: var(--sand);
 }
@@ -181,26 +179,59 @@ main {
   background: transparent;
   border: 2px solid var(--olive-600);
   color: var(--khaki);
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 3px;
   font-family: 'Oswald', sans-serif;
-  letter-spacing: 0.08em;
-  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
   cursor: pointer;
 }
 .btn-ghost:hover { background: var(--olive-700); color: var(--khaki-light); }
+
+/* ---------- Classificação (segmented control) ---------- */
+
+.segmented {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.segment-btn {
+  flex: 1 1 auto;
+  min-width: 140px;
+  background: var(--olive-900);
+  border: 2px solid var(--olive-600);
+  color: var(--khaki);
+  padding: 0.5rem 0.75rem;
+  border-radius: 3px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.segment-btn:hover { background: var(--olive-700); color: var(--khaki-light); }
+
+.segment-btn.active {
+  background: var(--khaki);
+  color: var(--olive-950);
+  border-color: var(--khaki);
+}
 
 /* ---------- Ranking table ---------- */
 
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   background: var(--olive-900);
   border: 2px solid var(--olive-600);
   border-radius: 4px;
-  padding: 0.55rem 0.9rem;
-  margin-bottom: 1.1rem;
+  padding: 0.45rem 0.75rem;
+  margin-bottom: 0.9rem;
 }
 
 .search-icon { opacity: 0.7; }
@@ -211,7 +242,8 @@ main {
   border: none;
   color: var(--khaki-light);
   font-family: 'Oswald', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  min-width: 0;
 }
 
 .search-bar input:focus { outline: none; }
@@ -220,20 +252,20 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.4rem;
-  margin-top: 1.25rem;
+  gap: 0.35rem;
+  margin-top: 1rem;
 }
 
 .page-btn {
-  min-width: 2.2rem;
-  padding: 0.4rem 0.6rem;
+  min-width: 2rem;
+  padding: 0.35rem 0.55rem;
   background: var(--olive-900);
   border: 2px solid var(--olive-600);
   color: var(--khaki);
   border-radius: 3px;
   font-family: 'Oswald', sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
@@ -253,7 +285,7 @@ main {
 .page-ellipsis {
   display: flex;
   align-items: center;
-  padding: 0 0.3rem;
+  padding: 0 0.25rem;
   color: var(--olive-400);
 }
 
@@ -261,10 +293,11 @@ main {
   background: var(--olive-800);
   border: 2px dashed var(--olive-600);
   color: var(--khaki);
-  padding: 2rem;
+  padding: 1.5rem 1rem;
   text-align: center;
   border-radius: 4px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
+  font-size: 0.9rem;
 }
 
 .table-wrap {
@@ -272,47 +305,50 @@ main {
   border: 2px solid var(--olive-600);
   border-radius: 4px;
   box-shadow: 0 8px 20px var(--shadow);
+  -webkit-overflow-scrolling: touch;
 }
 
 .ranking-table {
   width: 100%;
   border-collapse: collapse;
   background: var(--olive-900);
-  min-width: 620px;
+  min-width: 480px;
 }
 
 .ranking-table thead th {
   background: var(--olive-700);
   color: var(--khaki-light);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-align: left;
-  padding: 0.75rem 0.9rem;
+  padding: 0.55rem 0.6rem;
   border-bottom: 3px solid var(--olive-950);
+  white-space: nowrap;
 }
 
 .ranking-table td {
-  padding: 0.65rem 0.9rem;
+  padding: 0.5rem 0.6rem;
   border-bottom: 1px solid var(--olive-700);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .ranking-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
 .ranking-table tbody tr:hover { background: rgba(122,133,66,0.18); }
 
-.col-pos { width: 90px; }
-.col-num { width: 90px; }
+.col-pos { width: 70px; }
+.col-num { width: 72px; }
 .ranking-table td.col-num, .ranking-table th.col-num { text-align: center; }
 
 .rank-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
   font-weight: 700;
   font-family: 'Oswald', sans-serif;
+  white-space: nowrap;
 }
 
-.rank-medal { font-size: 1rem; }
+.rank-medal { font-size: 0.95rem; }
 .rank-1 .rank-medal { color: var(--gold); }
 .rank-2 .rank-medal { color: var(--silver); }
 .rank-3 .rank-medal { color: var(--bronze); }
@@ -322,13 +358,13 @@ main {
 .pct-bar-wrap {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   justify-content: center;
 }
 
 .pct-bar {
-  width: 46px;
-  height: 6px;
+  width: 36px;
+  height: 5px;
   background: var(--olive-950);
   border-radius: 4px;
   overflow: hidden;
@@ -346,23 +382,23 @@ main {
   background: var(--olive-900);
   border: 2px solid var(--olive-600);
   border-radius: 6px;
-  padding: 1.75rem;
+  padding: 1.25rem;
   box-shadow: 0 8px 24px var(--shadow);
   max-width: 520px;
   margin: 0 auto;
 }
 
-.field { margin-bottom: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.field { margin-bottom: 0.85rem; display: flex; flex-direction: column; gap: 0.3rem; }
 
 .field-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 label {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
   color: var(--khaki);
   font-weight: 600;
 }
@@ -371,14 +407,17 @@ label {
 
 input[type="text"],
 input[type="number"],
-input[type="email"] {
+input[type="email"],
+input[type="tel"] {
   background: var(--olive-950);
   border: 2px solid var(--olive-600);
   color: var(--khaki-light);
-  padding: 0.65rem 0.75rem;
+  padding: 0.55rem 0.65rem;
   border-radius: 3px;
   font-family: 'Oswald', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  width: 100%;
+  min-width: 0;
 }
 
 input:focus {
@@ -395,17 +434,35 @@ input:focus {
 .acertos-input input { flex: 1; }
 .acertos-total { color: var(--khaki); font-weight: 700; }
 
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--khaki-light);
+}
+
+.checkbox-field input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--olive-500);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
 .btn-enlist {
   width: 100%;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   background: var(--olive-600);
   color: var(--khaki-light);
   border: 2px solid var(--olive-500);
-  padding: 0.85rem;
+  padding: 0.75rem;
   font-family: 'Oswald', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
   text-transform: uppercase;
   border-radius: 4px;
   cursor: pointer;
@@ -417,11 +474,11 @@ input:focus {
 .btn-enlist:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
 .form-feedback {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.9rem;
   border-radius: 4px;
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
 
 .form-feedback.ok {
@@ -440,14 +497,39 @@ input:focus {
 
 .footer {
   text-align: center;
-  padding: 1.25rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  padding: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   color: var(--olive-400);
   border-top: 2px solid var(--olive-700);
 }
 
-@media (max-width: 480px) {
-  .field-row { grid-template-columns: 1fr; }
-  .ranking-table { min-width: 560px; }
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 600px) {
+  :root { font-size: 15px; }
+
+  .topbar { padding: 0.75rem 0.75rem 0.5rem; }
+  main { padding: 1rem 0.6rem 1.75rem; }
+
+  .brand-logo { height: 1.8rem; }
+  .stripe { display: none; }
+  .brand-sub { letter-spacing: 0.1em; }
+
+  .tab-btn { font-size: 0.7rem; padding: 0.5rem 0.85rem; flex: 1 1 auto; }
+
+  .form-card { padding: 1rem 0.85rem; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+
+  .segment-btn { min-width: 0; font-size: 0.64rem; padding: 0.5rem 0.4rem; }
+
+  .ranking-table { min-width: 0; }
+  .ranking-table thead th, .ranking-table td { padding: 0.45rem 0.4rem; font-size: 0.78rem; }
+  .col-pos { width: 56px; }
+  .col-num { width: 58px; }
+}
+
+@media (max-width: 380px) {
+  .brand { letter-spacing: 0.02em; }
+  .pct-bar { display: none; }
 }

@@ -1,8 +1,8 @@
-const { listarRankingCompleto } = require('../../lib/ranking');
+const { listarParaExportacao } = require('../../lib/ranking');
 const { checarAcesso } = require('../../lib/adminAuth');
 const { gerarPlanilha } = require('../../lib/exportXlsx');
 
-// Serverless Function da Vercel: exporta todos os cadastros (com e-mail) em .xlsx.
+// Serverless Function da Vercel: exporta todos os cadastros (com e-mail e telefone) em .xlsx.
 module.exports = async function handler(req, res) {
   const acesso = checarAcesso(req.headers['x-admin-key']);
   if (!acesso.ok) {
@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const entradas = await listarRankingCompleto();
+    const entradas = await listarParaExportacao();
     const buffer = await gerarPlanilha(entradas);
 
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
