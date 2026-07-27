@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ranking Nota Esa</title>
+<link rel="icon" href="assets/logo.avif" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="bg-layer" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-row">
+      <span class="stripe"></span>
+      <img src="assets/logo.avif" alt="Logo Esa" class="brand-logo" />
+      <h1 class="brand">RANKING NOTA ESA</h1>
+      <img src="assets/logo.avif" alt="" class="brand-logo" />
+      <span class="stripe"></span>
+    </div>
+    <p class="brand-sub">MENTORIA VOC&Ecirc; SARGENTO &mdash; RANKING DE NOTAS</p>
+    <nav class="tabs">
+      <button id="tab-ranking" class="tab-btn active" type="button">
+        <span class="tab-icon">&#9733;</span> RANKING
+      </button>
+      <button id="tab-enviar" class="tab-btn" type="button">
+        <span class="tab-icon">&#9998;</span> ENVIAR NOTA
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="view-ranking" class="view active">
+    <div class="panel-title">
+      <h2>QUADRO DE HONRA</h2>
+      <button id="btn-refresh" class="btn-ghost" type="button" title="Atualizar">&#8635; ATUALIZAR</button>
+    </div>
+
+    <div class="search-bar">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="busca-nome" placeholder="Pesquisar por nome..." />
+    </div>
+
+    <div id="ranking-empty" class="empty-msg" hidden>
+      Nenhum recruta cadastrado ainda. Seja o primeiro a enviar sua nota.
+    </div>
+
+    <div class="table-wrap">
+      <table class="ranking-table" id="ranking-table" hidden>
+        <thead>
+          <tr>
+            <th class="col-pos">POSTO</th>
+            <th>NOME</th>
+            <th class="col-num">IDADE</th>
+            <th class="col-num">ACERTOS</th>
+            <th class="col-num">%</th>
+          </tr>
+        </thead>
+        <tbody id="ranking-body"></tbody>
+      </table>
+    </div>
+
+    <nav id="paginacao" class="paginacao" hidden></nav>
+  </section>
+
+  <section id="view-enviar" class="view">
+    <div class="panel-title">
+      <h2>FICHA DE ALISTAMENTO</h2>
+    </div>
+
+    <form id="form-cadastro" class="form-card" autocomplete="off">
+      <div class="field">
+        <label for="nome">NOME</label>
+        <input type="text" id="nome" name="nome" placeholder="Nome completo" maxlength="80" required />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="idade">IDADE</label>
+          <input type="number" id="idade" name="idade" placeholder="Ex: 25" min="10" max="100" required />
+        </div>
+
+        <div class="field">
+          <label for="acertos">ACERTOS <span class="unit">(de 50)</span></label>
+          <div class="acertos-input">
+            <input type="number" id="acertos" name="acertos" placeholder="0" min="0" max="50" required />
+            <span class="acertos-total">/ 50</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">E-MAIL</label>
+        <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required />
+      </div>
+
+      <button type="submit" class="btn-enlist">
+        <span class="tab-icon">&#9873;</span> ENVIAR NOTA
+      </button>
+
+      <div id="form-feedback" class="form-feedback" hidden></div>
+    </form>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>RANKING NOTA ESA &middot; DADOS SOB SUA RESPONSABILIDADE</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

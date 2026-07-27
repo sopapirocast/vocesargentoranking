@@ -1,0 +1,13 @@
+node_modules/
+.vercel
+.env
+.env.*
+!.env.example
+
+# Pasta de origem das imagens (as usadas pelo site já estão em public/assets/)
+/assets
+
+# Arquivos auxiliares de skills/agents instalados localmente
+.agents/
+.claude/
+skills-lock.json

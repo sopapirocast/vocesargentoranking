@@ -1,0 +1,11 @@
+{
+  "framework": null,
+  "outputDirectory": "public",
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "crademin2.SEUDOMINIO.com" }],
+      "destination": "/admin/index.html"
+    }
+  ]
+}

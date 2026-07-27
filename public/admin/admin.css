@@ -1,0 +1,25 @@
+.admin-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-danger {
+  background: transparent;
+  border: 2px solid var(--danger);
+  color: #f0d0d0;
+  padding: 0.35rem 0.7rem;
+  border-radius: 3px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background: var(--danger);
+  color: var(--khaki-light);
+}
+
+#view-login .form-card {
+  margin-top: 2rem;
+}

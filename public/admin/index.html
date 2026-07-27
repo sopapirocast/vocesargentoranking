@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin &middot; Ranking Nota Esa</title>
+<link rel="icon" href="../assets/logo.avif" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<div class="bg-layer" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-row">
+      <span class="stripe"></span>
+      <img src="../assets/logo.avif" alt="Logo Esa" class="brand-logo" />
+      <h1 class="brand">PAINEL ADMIN</h1>
+      <img src="../assets/logo.avif" alt="" class="brand-logo" />
+      <span class="stripe"></span>
+    </div>
+    <p class="brand-sub">RANKING NOTA ESA &mdash; ÁREA RESTRITA</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="view-login" class="view active">
+    <div class="panel-title">
+      <h2>IDENTIFICAÇÃO</h2>
+    </div>
+    <form id="form-login" class="form-card" autocomplete="off">
+      <div class="field">
+        <label for="senha">SENHA DE ADMINISTRADOR</label>
+        <input type="password" id="senha" name="senha" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required />
+      </div>
+      <button type="submit" class="btn-enlist">
+        <span class="tab-icon">&#128274;</span> ENTRAR
+      </button>
+      <div id="login-feedback" class="form-feedback" hidden></div>
+    </form>
+  </section>
+
+  <section id="view-painel" class="view">
+    <div class="panel-title">
+      <h2>TODOS OS CADASTROS</h2>
+      <div class="admin-actions">
+        <button id="btn-export" class="btn-ghost" type="button">&#128190; BAIXAR XLS</button>
+        <button id="btn-refresh" class="btn-ghost" type="button">&#8635; ATUALIZAR</button>
+        <button id="btn-logout" class="btn-ghost" type="button">SAIR</button>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="busca-nome" placeholder="Pesquisar por nome..." />
+    </div>
+
+    <div id="painel-empty" class="empty-msg" hidden>
+      Nenhum recruta cadastrado ainda.
+    </div>
+
+    <div class="table-wrap">
+      <table class="ranking-table" id="painel-table" hidden>
+        <thead>
+          <tr>
+            <th class="col-pos">POSTO</th>
+            <th>NOME</th>
+            <th class="col-num">IDADE</th>
+            <th>E-MAIL</th>
+            <th class="col-num">ACERTOS</th>
+            <th class="col-num">%</th>
+            <th>CADASTRO</th>
+            <th class="col-num">AÇÃO</th>
+          </tr>
+        </thead>
+        <tbody id="painel-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>RANKING NOTA ESA &middot; PAINEL ADMINISTRATIVO</span>
+</footer>
+
+<script src="admin.js"></script>
+</body>
+</html>
